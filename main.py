@@ -1,9 +1,6 @@
 from konlpy.tag import Okt
 from fastapi import FastAPI
 from pydantic import BaseModel
-import java_config
-
-java_config.configure_java()
 
 okt = Okt()
 

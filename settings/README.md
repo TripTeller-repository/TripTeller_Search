@@ -5,11 +5,17 @@
 - 설치 후, 운영체제에 맞게 Java를 설치
 
 ## 2. JAVA_HOME 설정 (시스템 환경 변수 설정)
-- `Windows + S` 를 눌러 시스템 환경 변수를 검색하고 고급 시스템 설정 보기
-- 시스템 속성 창에서 `환경 변수` 버튼을 클릭
-- 시스템 변수 목록에서 `JAVA_HOME` 을 찾고, 그 값에 Java 설치 경로(예: `C:\Program Files\Java\jdk-11`)를 입력
-- JAVA_HOME 이 없다면, 새로 만들기를 클릭하여 추가
+1. 윈도우 + S 로 '시스템 환경변수 편집' 검색 
+2. 또는 윈도우 + S 로 '고급 시스템 보기' - '시스템 속성'
+3. 시스템 속성 창에서 `환경 변수` 버튼을 클릭
+4. 시스템 변수 목록에서 `JAVA_HOME` 을 만들고, 그 값에 Java 설치 경로(예: `C:\Program Files\Java\jdk-11`)를 입력
+    ![Image](https://github.com/user-attachments/assets/3fd1e821-0383-41c8-8296-30a6a5bc9c07)
+5. 시스템 변수 목록에서 `path` 을 찾고 `%JAVA_HOME%bin` 입력
+    ![Image](https://github.com/user-attachments/assets/0e0b687f-4bcb-4af3-abff-102c4268fbef)
+6. 결과
 - 환경 변수 적용을 위해 컴퓨터 재부팅이 필요할 수 있음. 혹시 안 되면 일단 재부팅해보면 될 수 있음.
+- `where java`와 `java -version`을 입력했을 때 결과가 나와야 함.
+    ![Image](https://github.com/user-attachments/assets/158b1ae6-326d-4769-9019-3168a5b7eb0b)
 
 ## 3. JPYPE1 설치
 - [JPYPE1 PyPI 페이지](https://pypi.org/project/jpype1/#modal-lose)에서 사용하는 Python 버전과 시스템에 맞는 `.whl` 파일을 다운로드
