@@ -1,19 +1,24 @@
 from konlpy.tag import Okt
 from fastapi import FastAPI
 from pydantic import BaseModel
+import text_process
 
 okt = Okt()
 
 app = FastAPI()
-print(okt.pos("너는 바보양 졸려죽겠쓰~~"))
+
 class TextData(BaseModel):
     text: str
 
-@app.post('/analyze')
-def analyze_text(data: TextData):
-    # if not jpype.isJVMStarted():
-    #     java_config.configure_java()
+@app.get('/')
+def health_check():
+    return {"status":"ok"}
+
+@app.post('/text-processing')
+def process_text(data: TextData):
+    result = text_process.process_text(data.text)
+    if "error" in result:
+        return {"error": result["error"]}
     
-    # Process the text and get tokens
-    tokens = okt.morphs(data.text)
-    return {"tokens": tokens}
+    # print(result)
+    return result
