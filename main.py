@@ -1,5 +1,5 @@
 from konlpy.tag import Okt
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 import text_process
 
@@ -16,9 +16,10 @@ def health_check():
 
 @app.post('/text-processing')
 def process_text(data: TextData):
-    result = text_process.process_text(data.text)
-    if "error" in result:
-        return {"error": result["error"]}
-    
-    # print(result)
-    return result
+    try:
+        result = text_process.process_text(data.text)
+        if "error" in result:
+            raise HTTPException(status_code=400, detail=f"Error processing text: {result['error']}")
+        return result
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Internal server error: {str(e)}")
